@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+      function computerPlay() {
+        let moves = ["Rock", "Paper", "Scissors"];
+        let randomMove = moves[Math.floor(Math.random() * moves.length)];
+      }
+
+      function playRound(playerSelection, computerSelection) {
+
+        if (playerSelection.search(/rock/) && computerSelection.search(Scissors)) {
+            return "You win! Rock beats Scissors";
+
+        } else if (playerSelection.search(/rock/) && computerSelection.search(Paper)) {
+            return "You lose! Paper beats Rock";
+
+        } else if (playerSelection.search(/paper/) && computerSelection.search(Rock)) {
+            return "You win! Paper beats Rock";
+
+        } else if (playerSelection.search(/paper/) && computerSelection.search(Scissors)) {
+            return "You lose! Scissors beats Paper"; 
+
+        } else if (playerSelection.search(/scissors/) && computerSelection.search(Paper)) {
+            return "You win! Scissors beats Paper";
+
+        } else if (playerSelection.search(/scissors/) && computerSelection.search(Rock)) {
+            return "You lose! Rock beats Scissors";
+
+        } else if ((playerSelection.search(/rock/) && computerSelection.search(Rock)) ||
+                  (playerSelection.search(/paper/) && computerSelection.search(Paper)) ||
+                  (playerSelection.search(/scissors/) && computerSelection.search(Scissors))) {
+            return "It's a draw.";
+        }
+      }
+
+      function game() {
+        let counter = 0;
+        while (counter < 5) {
+            playRound(playerSelection, computerSelection);
+            counter++;
+        }
+      }
+
+
+    const playerSelection = "rock";
+    const computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
+
+  </script>
+</body>
+</html>
