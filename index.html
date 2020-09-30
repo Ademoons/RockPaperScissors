@@ -7,65 +7,84 @@
 <body>
   <script>
 
-    let playerScore = 0;
-    let computerScore = 0;
+    let playerScore;
+    let computerScore;
+    let playerSelection;
+    let computerSelection;
 
       function computerPlay() {
         let moves = ["Rock", "Paper", "Scissors"];
-        let randomMove = moves[Math.floor(Math.random() * moves.length)];
+        computerSelection = moves[Math.floor(Math.random() * moves.length)];
+        return computerSelection;
       }
 
-      const computerSelection = computerPlay();
+      function playerPlay() {
+        playerSelection = window.prompt("Rock, Paper, Scissors?" + "\nComputer score: " + computerScore + "\nHuman Score: " + playerScore);
+
+        if (playerSelection === "Rock" || playerSelection === "Paper" || playerSelection === "Scissors") {
+            return playerSelection;
+        }
+        alert("No strange weapons allowed.");  
+      }
+
 
       function playRound(playerSelection, computerSelection) {
 
         if (playerSelection == "Rock" && computerSelection == "Scissors") {
             console.log("You win! Rock beats Scissors.");
-            return playerScore++;
+            playerScore++;
         } else if (playerSelection == "Rock" && computerSelection == "Paper") {
             console.log("You lose! Paper beats Rock.");
-            return computerScore++;
+            computerScore++;
         } else if (playerSelection == "Rock" && computerSelection == "Rock") {
             console.log("It's a tie.");
-            return undefined;
         }
         
         if (playerSelection == "Paper" && computerSelection == "Rock") {
             console.log("You win! Paper beats Rock.");
-            return playerScore++;
+            playerScore++;
         } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
             console.log("You lose! Scissors beats Paper."); 
-            return computerScore++;
+            computerScore++;
         } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
             console.log("It's a tie.");
-            return undefined;
         }
         
         if (playerSelection == "Scissors" && computerSelection == "Paper") {
             console.log("You win! Scissors beats Paper.");
-            return playerScore++;
+            playerScore++;
         } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
             console.log("You lose! Rock beats Scissors.");
-            return computerScore++;
+            computerScore++;
         } else if (playerSelection == "Scissors" && computerSelection == "Scissors") {
             console.log("It's a tie.");
-            return undefined;
         }
       }
 
       function game() {
 
         let i = 0;
+        playerScore = 0;
+        computerScore = 0;
+    
         while (i < 5) {
-            const playerSelection = window.prompt("Rock, Paper, Scissors?");
+            computerPlay();
+            playerPlay();
             playRound(playerSelection, computerSelection);
+            console.log("Computer: " + computerScore + " Human: " + playerScore);
             i++;
-            console.log(`Computer: ${ computerScore }` + " Human: " + playerScore);
+        }
+
+        if (playerScore > computerScore) {
+            console.log("You win the game!");
+        } else if (playerScore == computerScore) {
+          console.log("A tie. Try again.");
+        } else {
+          console.log("The machine wins.");
         }
       }
 
       game();
-
 
   </script>
 </body>
